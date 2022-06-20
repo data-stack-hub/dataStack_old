@@ -1,0 +1,6 @@
+tasks:
+  - init: |
+      cd public/datastack
+      npm install
+  - command: |
+      npm start
