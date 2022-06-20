@@ -3,7 +3,7 @@ tasks:
   - before: |
       cd public/datastack
       npm install -g @angular/cli
-      npm install       
+    init: npm install       
     command: ng serve
 
 
