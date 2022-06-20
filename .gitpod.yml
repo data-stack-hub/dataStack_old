@@ -1,6 +1,13 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - init: |
-      cd public/datastack
-      npm install
-  - command: |
-      npm start
+  - name: test
+    init: echo 'init script' # runs during prebuild
+    command: echo 'start script'
+  - name: run angular app
+    before: cd /public/datastack
+    init: npm install
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 3000
+    onOpen: open-preview
