@@ -1,0 +1,21 @@
+.logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+
+
+  nz-content {
+    margin: 0 16px;
+  }
+
+
+
+  .inner-content {
+    padding: 24px;
+    background: #fff;
+    min-height: 360px;
+  }
+
+ 
