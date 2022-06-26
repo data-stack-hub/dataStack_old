@@ -20,6 +20,11 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AdDirective } from './components/component-loader/component.directive';
 import { ComponentLoaderComponent } from './components/component-loader/component-loader.component';
+import { TableComponent } from './components/table/table.component';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,18 +32,17 @@ import { ComponentLoaderComponent } from './components/component-loader/componen
     NavbarComponent,
     ProjectsComponent,
     AdDirective,
-    ComponentLoaderComponent
+    ComponentLoaderComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // NzButtonModule,
-    // NzLayoutModule,
     antdModule,
-    // NzIconModule.forRoot(icons),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [{ provide: NZ_ICONS, useValue: icons }],
+  providers: [{ provide: NZ_ICONS, useValue: icons },  { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

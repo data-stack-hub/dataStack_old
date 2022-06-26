@@ -1,0 +1,16 @@
+<nz-table 
+#basicTable 
+[nzData]="dataSet"
+[nzLoading]="loading"
+>
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns" [nzSortFn]="true">{{column.display_name}}</th>
+      </tr>
+    </thead>
+    <tbody> 
+      <tr *ngFor="let data of basicTable.data" (click)="row_click()">
+        <td *ngFor ="let column of columns">{{data[column.column_name] }}</td>
+      </tr>
+    </tbody>
+  </nz-table>

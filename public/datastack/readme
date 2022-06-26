@@ -1,11 +1,11 @@
 ------------------------------services-----------------------------
 ng g service services/appinit
 ng g service services/api
-ng g service services/utils
+ng g service services/components
 
 ------------------------------components---------------------------
 
 ng g c components/navigation
 ng g c components/navbar
-ng g c components/projects
 ng g c components/component_loader
+ng g c components/table

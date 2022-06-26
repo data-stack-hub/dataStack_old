@@ -1,11 +1,13 @@
 
 <nz-layout style="height: 100vh;">
   <nz-sider nzCollapsible nzWidth="200px">
-    <div class="logo"></div>
+    <div class="logo" style="color: white;
+    line-height: 32px;
+    text-align: center;">Data Stack</div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item>
+      <li nz-menu-item *ngFor="let link of nav_links" (click)="nav_to(link.link)">
         <i nz-icon nzType="pie-chart"></i>
-        <span>Option 1</span>
+        <span>{{link.name}}</span>
       </li>
       <li nz-menu-item>
         <i nz-icon nzType="desktop"></i>
