@@ -18,7 +18,7 @@ const antDesignIcons = AllIcons as {
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { AdDirective } from './components/component-loader/component.directive';
+import { ComponentDirective } from './components/component-loader/component.directive';
 import { ComponentLoaderComponent } from './components/component-loader/component-loader.component';
 import { TableComponent } from './components/table/table.component';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
@@ -31,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     NavbarComponent,
     ProjectsComponent,
-    AdDirective,
+    ComponentDirective,
     ComponentLoaderComponent,
     TableComponent
   ],

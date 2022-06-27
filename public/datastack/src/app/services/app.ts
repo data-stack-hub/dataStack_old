@@ -31,16 +31,16 @@ export const app = {
     //  view for UI
     components: {
         projects:{
-            component : 'table_component',
-            paramaters : {url:'https://jsonplaceholder.typicode.com/posts'},
+            id : 'table_component',
+            parameters : {url:'https://jsonplaceholder.typicode.com/posts'},
             events :{ 'row_click_event':{type:'navigation', to:'/test'}}
           },
         test:{
-            component: 'project_component'
+            id: 'project_component'
         },
         todo:{
-            component : 'table_component',
-            paramaters : {url:'https://jsonplaceholder.typicode.com/todos'},
+            id : 'table_component',
+            parameters : {url:'https://jsonplaceholder.typicode.com/todos'},
             events :{ 'row_click_event':{type:'navigation', to:'/test'}}
           },
     },

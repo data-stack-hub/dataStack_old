@@ -20,7 +20,6 @@ nav_links = []
     
   }
 
-
   nav_to(link){
     this.appinit.navigate_to(link)
   }

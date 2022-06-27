@@ -1,7 +1,8 @@
 import { Component,  OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute  } from '@angular/router';
 import {filter} from 'rxjs/operators';
-import { switchMap } from 'rxjs/operators';
+import { AppinitService } from 'src/app/services/appinit.service';
+import { ComponentsService } from 'src/app/services/components.service';
 
 
 @Component({
@@ -11,9 +12,12 @@ import { switchMap } from 'rxjs/operators';
 })
 export class NavigationComponent implements OnInit {
   current_route = ''
+  component: any;
   
   constructor(private router : Router, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cf : ComponentsService,
+    private appinit : AppinitService
     ) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -21,6 +25,7 @@ export class NavigationComponent implements OnInit {
       .subscribe((event:any) => {
           console.log(event.urlAfterRedirects);
         this.current_route = event.urlAfterRedirects
+        this.component = this.cf.get_component(this.appinit.route_to_component(this.current_route))
       });
 
     
