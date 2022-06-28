@@ -8,11 +8,10 @@ import { AppinitService } from 'src/app/services/appinit.service';
 
 })
 export class NavbarComponent implements OnInit {
-nav_links = []
+menu = []
   constructor(private appinit : AppinitService) {
     
-      this.nav_links = this.appinit.get_app_content()['nav_links']
-      console.log(this.nav_links)
+      this.menu = this.appinit.get_app_content()['menu']
     
    }
 
@@ -21,6 +20,6 @@ nav_links = []
   }
 
   nav_to(link){
-    this.appinit.navigate_to(link)
+    this.appinit.dispatch_event({fn:'navigate_to', params:{path:link}})
   }
 }

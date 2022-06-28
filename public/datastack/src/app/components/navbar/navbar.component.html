@@ -5,31 +5,20 @@
     line-height: 32px;
     text-align: center;">Data Stack</div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item *ngFor="let link of nav_links" (click)="nav_to(link.link)">
-        <i nz-icon nzType="pie-chart"></i>
-        <span>{{link.name}}</span>
-      </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="desktop"></i>
-        <span>Option 2</span>
-      </li>
-      <li nz-submenu nzTitle="User" nzIcon="user">
-        <ul>
-          <li nz-menu-item>Tom</li>
-          <li nz-menu-item>Bill</li>
-          <li nz-menu-item>Alex</li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Team" nzIcon="team">
-        <ul>
-          <li nz-menu-item>Team 1</li>
-          <li nz-menu-item>Team 2</li>
-        </ul>
-      </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="file"></i>
-        <span>File</span>
-      </li>
+      
+      <ng-container *ngFor="let item of menu">
+        <li nz-menu-item (click)="nav_to(item.link)" *ngIf="!item.children">
+          <i nz-icon nzType="pie-chart"></i>
+          <span>{{item.name}}</span>
+        </li>
+       
+        <li nz-submenu [nzTitle]="item.name" [nzIcon]="item.icon" *ngIf="item.children">
+          <ul>
+            <li nz-menu-item (click)="nav_to(child_item.link)" *ngFor="let child_item of item.children">{{child_item.name}}</li>
+          </ul>
+        </li>
+      </ng-container>
+
     </ul>
   </nz-sider>
   <nz-content><ng-content></ng-content></nz-content>

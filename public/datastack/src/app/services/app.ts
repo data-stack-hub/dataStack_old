@@ -6,7 +6,7 @@ export const app = {
         {path:'/todo', component:'todo'},
     ],
 
-    nav_links :[
+    menu :[
         {
             rank:1,
             name:'projects',
@@ -26,6 +26,22 @@ export const app = {
             link:'todo',
             icon:'bookmark-outline'
           },
+          {
+            name:'create',
+            icon:'plus-circle',
+            children:[
+              {
+                name:'workspace',
+                link:'workspace'
+              },
+              {
+                name:'function'
+              },
+              {
+                name:'notebook'
+              }
+            ]
+          }
     ],
 
     //  view for UI
@@ -33,7 +49,7 @@ export const app = {
         projects:{
             id : 'table_component',
             parameters : {url:'https://jsonplaceholder.typicode.com/posts'},
-            events :{ 'row_click_event':{type:'navigation', to:'/test'}}
+            events :{ 'row_click_event':{type:'navigation', params:{ path:'/test'},fn:'navigate_to'}}
           },
         test:{
             id: 'project_component'
@@ -41,7 +57,7 @@ export const app = {
         todo:{
             id : 'table_component',
             parameters : {url:'https://jsonplaceholder.typicode.com/todos'},
-            events :{ 'row_click_event':{type:'navigation', to:'/test'}}
+            events :{ 'row_click_event':{type:'navigation', to:'/test',params:{ path:'/test'}, fn:'navigate_to'}}
           },
     },
     variables: {},

@@ -28,8 +28,9 @@ export class ComponentLoaderComponent implements OnInit {
   }
 
   loadComponent() {
-    console.log(this.root, ComponentDirective  )
     const viewContainerRef = this.root.viewContainerRef;
+    console.log(this.root, ComponentDirective, viewContainerRef  )
+
     viewContainerRef.clear();
       let _component:any = this.component
       console.log(_component)
@@ -42,7 +43,7 @@ export class ComponentLoaderComponent implements OnInit {
         console.log(key)
         componentRef.instance[key].subscribe(()=>{
           console.log('event clicked')
-          this.appinit.actions(_component.events[key])
+          this.appinit.dispatch_event(_component.events[key])
         })
         
       })  

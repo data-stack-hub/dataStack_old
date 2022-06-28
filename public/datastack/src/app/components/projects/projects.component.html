@@ -1,1 +1,16 @@
 <p>projects works!</p>
+
+<button (click)="test_popup()">open model</button>
+<div>
+<app-component-loader [component]="component"></app-component-loader>
+</div>
+
+<nz-modal nzVisible="false" nzTitle="The first Modal" >
+    <ng-container *nzModalContent>
+      <p>Content one</p>
+      <p>Content two</p>
+      <p>Content three</p>
+      <app-component-loader [component]="component"></app-component-loader>
+
+    </ng-container>
+  </nz-modal>
