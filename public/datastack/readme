@@ -10,3 +10,4 @@ ng g c components/navigation
 ng g c components/navbar
 ng g c components/component_loader
 ng g c components/table
+ 

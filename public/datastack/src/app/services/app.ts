@@ -4,6 +4,7 @@ export const app = {
         {path:'/projects', component:'projects'},
         {path:'/test', component:'test'},
         {path:'/todo', component:'todo'},
+        {path:'/form', component:'form'}
     ],
 
     menu :[
@@ -12,6 +13,10 @@ export const app = {
             name:'projects',
             link:'projects',
             icon:'bookmark-outline'
+          },
+          {
+            name:'form',
+            link:'form'
           },
           
           {
@@ -53,6 +58,27 @@ export const app = {
           },
         test:{
             id: 'project_component'
+        },
+        form:{
+          id:'form',
+          parameters:{controls : [
+            {
+              "name": "firstName",
+              "label": "First name:",
+              "value": "",
+              "type": "text",
+              "validators": {
+                "required": true,
+              }
+            },
+            {
+              "name": "firstName last",
+              "label": "First name last:",
+              "value": "",
+              "type": "text_area",
+              "validators": {}
+            }
+          ]}
         },
         todo:{
             id : 'table_component',

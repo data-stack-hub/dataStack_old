@@ -25,7 +25,9 @@ export class NavigationComponent implements OnInit {
       .subscribe((event:any) => {
           console.log(event.urlAfterRedirects);
         this.current_route = event.urlAfterRedirects
+        console.log(this.cf.get_component(this.appinit.route_to_component(this.current_route)))
         this.component = this.cf.get_component(this.appinit.route_to_component(this.current_route))
+        console.log(this.component)
       });
 
     

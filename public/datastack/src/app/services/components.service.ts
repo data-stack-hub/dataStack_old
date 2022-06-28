@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormsComponent } from '../components/forms/forms.component';
 import { ProjectsComponent } from '../components/projects/projects.component';
 import { TableComponent } from '../components/table/table.component';
 import { app } from './app'
@@ -10,7 +11,8 @@ export class ComponentsService {
 
   mapping:any={
     'table_component':TableComponent,
-    'project_component':ProjectsComponent
+    'project_component':ProjectsComponent,
+    'form': FormsComponent
   }
   constructor(private utils:UtilsService) { }
 

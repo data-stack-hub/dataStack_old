@@ -23,7 +23,7 @@ export class ProjectsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.component = this.cf.get_component('todo')
+    this.component = this.cf.get_component('form')
   }
 
   open_popup(){

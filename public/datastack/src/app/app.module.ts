@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { ComponentLoaderComponent } from './components/component-loader/componen
 import { TableComponent } from './components/table/table.component';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsComponent } from './components/forms/forms.component';
 
 
 @NgModule({
@@ -33,14 +35,17 @@ import { HttpClientModule } from '@angular/common/http';
     ProjectsComponent,
     ComponentDirective,
     ComponentLoaderComponent,
-    TableComponent
+    TableComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     antdModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [{ provide: NZ_ICONS, useValue: icons },  { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
