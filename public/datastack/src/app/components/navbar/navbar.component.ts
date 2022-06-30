@@ -19,7 +19,15 @@ menu = []
     
   }
 
-  nav_to(link){
-    this.appinit.dispatch_event({fn:'navigate_to', params:{path:link}})
+  nav_to(menu){
+    // console.log(a)
+    if( menu.hasOwnProperty('link'))
+    this.appinit.dispatch_event({fn:'navigate_to', params:{path:menu.link}})
+    else if(menu.hasOwnProperty('events')){
+      this.appinit.dispatch_event(menu.events.click).subscribe(res=>{
+        console.log(res)
+      })
+    }
   }
+  
 }

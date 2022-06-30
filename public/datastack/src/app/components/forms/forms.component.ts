@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AppinitService } from 'src/app/services/appinit.service';
+import { ComponentsService } from 'src/app/services/components.service';
 
 @Component({
   selector: 'app-forms',
@@ -9,12 +11,22 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class FormsComponent implements OnInit {
 
   @Input() controls:any = []
+  @Input() state:any
   @Output() form_data: EventEmitter<any> = new EventEmitter()
+  @Output() submit: EventEmitter<any> = new EventEmitter()
   public myForm: FormGroup = this.fb.group({});
   
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, 
+    private appinit:AppinitService,
+    private cf:ComponentsService) { 
   }
 
+
+ngOnChanges(change:any){
+    if (!change.state.firstChange){
+      this.state = change.state.currentValue
+    }
+  }
   ngOnInit() {
     console.log(this.controls)
     this.createForm(this.controls)
@@ -76,6 +88,14 @@ export class FormsComponent implements OnInit {
   onSubmit() {
     console.log('Form valid: ', this.myForm.valid);
     console.log('Form values: ', this.myForm.value);
-    this.form_data.emit(this.myForm.value)
+    // this.form_data.emit(this.myForm.value)
+    // this.submit.emit(this.myForm.value)
+    let event = this.cf.get_component('form').events.submit
+    event.params.payload = this.myForm.value
+    this.appinit.dispatch_event(event).subscribe(res=>{
+      console.log(res)
+    }, (error)=>{
+      console.log('error :', error)
+    })
   }
 }

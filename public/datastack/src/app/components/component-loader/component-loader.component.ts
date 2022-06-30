@@ -41,9 +41,13 @@ export class ComponentLoaderComponent implements OnInit {
       })
       Object.keys(_component.events || {}).forEach((key:any)=>{
         console.log(key)
-        componentRef.instance[key].subscribe(()=>{
-          console.log('event clicked')
-          this.appinit.dispatch_event(_component.events[key])
+        componentRef.instance[key].subscribe((a)=>{
+          console.log('event clicked',a)
+          _component.events[key].params.payload = a
+          this.appinit.dispatch_event(_component.events[key]).subscribe(res=>{
+            console.log(res)
+            componentRef.instance.state = 'success'
+          })
         })
         
       })  

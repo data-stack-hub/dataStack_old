@@ -7,14 +7,14 @@
     <ul nz-menu nzTheme="dark" nzMode="inline">
       
       <ng-container *ngFor="let item of menu">
-        <li nz-menu-item (click)="nav_to(item.link)" *ngIf="!item.children">
+        <li nz-menu-item (click)="nav_to(item)" *ngIf="!item.children">
           <i nz-icon nzType="pie-chart"></i>
           <span>{{item.name}}</span>
         </li>
        
         <li nz-submenu [nzTitle]="item.name" [nzIcon]="item.icon" *ngIf="item.children">
           <ul>
-            <li nz-menu-item (click)="nav_to(child_item.link)" *ngFor="let child_item of item.children">{{child_item.name}}</li>
+            <li nz-menu-item (click)="nav_to(child_item)" *ngFor="let child_item of item.children">{{child_item.name}}</li>
           </ul>
         </li>
       </ng-container>

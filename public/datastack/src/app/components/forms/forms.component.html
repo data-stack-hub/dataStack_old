@@ -1,4 +1,4 @@
-<p>forms works!</p>
+<p>forms works! {{state}}</p>
 <form nz-form [formGroup]="myForm"  (ngSubmit)="onSubmit()">
     <div *ngFor="let control of controls">
         <div class="mb-3" *ngIf="control.type == 'text'">
@@ -17,7 +17,6 @@
               </nz-form-item>
         </div>
     </div>
-
     <div class="col-auto" style="width: 100%;">
         <button nz-button nzType="primary"  [disabled]="!myForm.valid" >Confirm identity</button>
     </div>

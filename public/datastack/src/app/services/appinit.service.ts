@@ -1,5 +1,6 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from './api.service';
 import { app } from './app'
 
 @Injectable({
@@ -9,6 +10,7 @@ export class AppinitService {
 
   _app:any = app
   constructor(private router: Router,
+    private api: ApiService
     ) {
     console.log(app)
 
@@ -29,7 +31,15 @@ export class AppinitService {
    }
 
    dispatch_event(_event:any){
-    this[_event.fn](_event.params)
+    console.log('event:', _event)
+    if(_event.type == 'http'){
+      return this.api.get(_event.params.url)
+      // return this.api.post(_event.params.url, _event.params.payload)
+
+    }
+    else if(_event.hasOwnProperty('fn')){
+      return this[_event.fn](_event.params)
+    }
    }
 
   
