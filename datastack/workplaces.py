@@ -5,8 +5,9 @@ from .db.sql import sql
 
 table = 'workspaces'
 
-def create_workspace():
-    data = {'name':'default_workspace'}
+def create_workspace(name):
+    print(name)
+    data = {'name':name}
     db = sql(config['db_path'], table)
     db.add_document(data)
     # return db.get_all_documents()

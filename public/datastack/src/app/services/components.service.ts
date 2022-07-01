@@ -22,7 +22,7 @@ export class ComponentsService {
     let _app:any = app
     let _component:any = this.utils.deep_copy(_app.components[component_name]) 
     console.log(_component)
-    _component.id = this.mapping[_component.id]
+    _component.type = this.mapping[_component.type]
     return _component
   }
 }

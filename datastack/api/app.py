@@ -1,7 +1,8 @@
 from flask import Flask, jsonify
+from flask import request
 from flask_cors import CORS
 from pathlib import Path
-import os, sys
+import os, sys, json
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 parent = os.path.dirname(SCRIPT_DIR)
@@ -19,10 +20,11 @@ def hello_world():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-@app.route('/api/create_workspace')
+@app.route('/api/create_workspace',  methods = ['GET', 'POST', 'DELETE'])
 def create_workspace():
-    print('creating workspace')
-    return datastack.workplaces.create_workspace()
+    print('creating workspace', request.json)
+    datastack.workplaces.create_workspace(request.json['name'])
+    return jsonify({'some': 'data'})
 
 @app.route('/api/workspaces')
 def get_workspace():

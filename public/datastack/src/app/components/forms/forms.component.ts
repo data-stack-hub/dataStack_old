@@ -12,6 +12,7 @@ export class FormsComponent implements OnInit {
 
   @Input() controls:any = []
   @Input() state:any
+  @Input() events:any
   @Output() form_data: EventEmitter<any> = new EventEmitter()
   @Output() submit: EventEmitter<any> = new EventEmitter()
   public myForm: FormGroup = this.fb.group({});
@@ -29,6 +30,7 @@ ngOnChanges(change:any){
   }
   ngOnInit() {
     console.log(this.controls)
+    console.log(this.events)
     this.createForm(this.controls)
   }
 
@@ -90,7 +92,7 @@ ngOnChanges(change:any){
     console.log('Form values: ', this.myForm.value);
     // this.form_data.emit(this.myForm.value)
     // this.submit.emit(this.myForm.value)
-    let event = this.cf.get_component('form').events.submit
+    let event = this.events.submit
     event.params.payload = this.myForm.value
     this.appinit.dispatch_event(event).subscribe(res=>{
       console.log(res)

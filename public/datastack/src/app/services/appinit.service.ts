@@ -33,9 +33,11 @@ export class AppinitService {
    dispatch_event(_event:any){
     console.log('event:', _event)
     if(_event.type == 'http'){
-      return this.api.get(_event.params.url)
-      // return this.api.post(_event.params.url, _event.params.payload)
-
+      if (_event.request == 'post'){
+        return this.api.post(_event.params.url, _event.params.payload)
+      }else{
+        return this.api.get(_event.params.url)
+      }
     }
     else if(_event.hasOwnProperty('fn')){
       return this[_event.fn](_event.params)

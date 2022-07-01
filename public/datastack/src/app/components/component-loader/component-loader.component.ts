@@ -34,10 +34,10 @@ export class ComponentLoaderComponent implements OnInit {
     viewContainerRef.clear();
       let _component:any = this.component
       console.log(_component)
-      const componentRef:any = viewContainerRef.createComponent(_component.id);
+      const componentRef:any = viewContainerRef.createComponent(_component.type);
+      componentRef.instance.events = _component.events
       Object.keys(_component.parameters || {}).forEach((key:any)=>{
         componentRef.instance[key] = _component.parameters[key]
-        
       })
       Object.keys(_component.events || {}).forEach((key:any)=>{
         console.log(key)

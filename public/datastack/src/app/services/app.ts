@@ -4,7 +4,8 @@ export const app = {
         {path:'/projects', component:'projects'},
         {path:'/test', component:'test'},
         {path:'/todo', component:'todo'},
-        {path:'/form', component:'form'}
+        {path:'/form', component:'form'},
+        {path:'/new_workspace', component:'new_workspace'}
     ],
 
     menu :[
@@ -37,10 +38,11 @@ export const app = {
             children:[
               {
                 name:'workspace',
-                events:{'click':{type:'http', params:{url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/api/create_workspace'}}}
+                events:{'click':{type:'http', params:{url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us41.gitpod.io/api/create_workspace'}}}
               },
               {
-                name:'function'
+                name:'function',
+                link:'new_workspace'
               },
               {
                 name:'notebook',
@@ -53,15 +55,18 @@ export const app = {
     //  view for UI
     components: {
         projects:{
-            id : 'table_component',
-            parameters : {url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/api/workspaces'},
+            type : 'table_component',
+            id:'projects',
+            parameters : {url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us51.gitpod.io/api/workspaces'},
             events :{ 'row_click_event':{type:'navigation', params:{ path:'/test'},fn:'navigate_to'}}
           },
         test:{
-            id: 'project_component'
+            id: 'project_component',
+            type:'project_component'
         },
         form:{
           id:'form',
+          type:'form',
           parameters:{controls : [
             {
               "name": "firstName",
@@ -86,9 +91,28 @@ export const app = {
         },
         todo:{
             id : 'table_component',
+            type:'table_component',
             parameters : {url:'https://jsonplaceholder.typicode.com/todos'},
             events :{ 'row_click_event':{type:'navigation', to:'/test',params:{ path:'/test'}, fn:'navigate_to'}}
           },
+        new_workspace:{
+          id:'new_worspace',
+          type:'form',
+          parameters:{controls : [
+            {
+              "name": "name",
+              "label": "Name:",
+              "value": "",
+              "type": "text",
+              "validators": {
+                "required": true,
+              }
+            },
+          ]},
+          events:{
+            'submit':{type:'http',request:'post', params:{url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us51.gitpod.io/api/create_workspace'}}
+          }
+        }
     },
     variables: { api_url:'https://5000-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/'},
 

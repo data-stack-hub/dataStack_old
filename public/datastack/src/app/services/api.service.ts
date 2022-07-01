@@ -14,10 +14,8 @@ export class ApiService {
 
   post(url, data){
     console.log(url, data)
-    return fetch(url).then(res=>res.json())
-    return this.http.post(url, data, {
-      headers : {
-          'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-      }})
+    // return fetch(url).then(res=>res.json())
+    return this.http.post(url, data
+    )
   }
 }
