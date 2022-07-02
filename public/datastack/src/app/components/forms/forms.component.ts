@@ -96,8 +96,12 @@ ngOnChanges(change:any){
     event.params.payload = this.myForm.value
     this.appinit.dispatch_event(event).subscribe(res=>{
       console.log(res)
+      let success_event = this.events.submit.success
+      success_event.params.payload = res
+      this.appinit.dispatch_event(success_event)
     }, (error)=>{
       console.log('error :', error)
+      this.appinit.dispatch_event(this.events.submit.error)
     })
   }
 }

@@ -3,6 +3,7 @@ ng g service services/appinit
 ng g service services/api
 ng g service services/components
 ng g service services/utils
+ng g service services/variables
 
 ------------------------------components---------------------------
 

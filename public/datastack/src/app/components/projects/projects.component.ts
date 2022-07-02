@@ -4,6 +4,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { TableComponent } from '../table/table.component';
 import { ComponentLoaderComponent } from '../component-loader/component-loader.component';
 import { ComponentsService } from 'src/app/services/components.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -13,16 +14,19 @@ import { ComponentsService } from 'src/app/services/components.service';
 export class ProjectsComponent implements OnInit {
 
 
-
+workspace
   component 
   constructor(private appinit: AppinitService, 
     private modal: NzModalService,
     private  viewContainerRef: ViewContainerRef,
-    private cf : ComponentsService) { }
+    private cf : ComponentsService,
+    private route: ActivatedRoute) { }
 
 
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.url[1].path)
+    this.workspace = this.route.snapshot.url[1].path
     this.component = this.cf.get_component('form')
   }
 

@@ -1,17 +1,19 @@
 export const app = {
     app_id: 'data_stack',
     routes: [
-        {path:'/projects', component:'projects'},
+        {path:'/projects', component:'projects', page:'test'},
         {path:'/test', component:'test'},
         {path:'/todo', component:'todo'},
         {path:'/form', component:'form'},
-        {path:'/new_workspace', component:'new_workspace'}
+        {path:'/new_workspace', component:'new_workspace'},
+        {path:'/workspace/${workspace}/function/${function}', component:'test'},
+        {path:'/new_workspace/${workspace}', component:'test'}
     ],
 
     menu :[
         {
             rank:1,
-            name:'projects',
+            name:'workspace',
             link:'projects',
             icon:'bookmark-outline'
           },
@@ -38,11 +40,12 @@ export const app = {
             children:[
               {
                 name:'workspace',
-                events:{'click':{type:'http', params:{url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us41.gitpod.io/api/create_workspace'}}}
+                link:'new_workspace',
+                events:{'click':{type:'http', params:{url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/api/create_workspace'}}}
               },
               {
                 name:'function',
-                link:'new_workspace'
+                link:'new_function'
               },
               {
                 name:'notebook',
@@ -53,11 +56,18 @@ export const app = {
     ],
 
     //  view for UI
+
+    pages:{
+      test:{
+        id: 'project_component',
+        type:'project_component'
+    }
+    },
     components: {
         projects:{
             type : 'table_component',
             id:'projects',
-            parameters : {url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us51.gitpod.io/api/workspaces'},
+            parameters : {url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/api/workspaces'},
             events :{ 'row_click_event':{type:'navigation', params:{ path:'/test'},fn:'navigate_to'}}
           },
         test:{
@@ -110,11 +120,42 @@ export const app = {
             },
           ]},
           events:{
-            'submit':{type:'http',request:'post', params:{url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us51.gitpod.io/api/create_workspace'}}
+            'submit':{
+              type:'http',request:'post', 
+              success:{type:'navigation',params:{ path:'/workspace/${name}'}, fn:'navigate_to'},
+              error:{},
+              params:{url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/api/create_workspace'}
+          },
+            
+          }
+        },
+        new_function:{
+          id:'new_worspace',
+          type:'form',
+          parameters:{controls : [
+            {
+              "name": "name",
+              "label": "Name:",
+              "value": "",
+              "type": "text",
+              "validators": {
+                "required": true,
+              }
+            },
+          ]},
+          events:{
+            'submit':{
+              type:'http',request:'get', 
+              success:{type:'navigation',params:{ path:'/workspace/${workspace}/function/${new_function}'}, fn:'navigate_to'},
+              error:{},
+              params:{url:'${api_url}/workspace/${workspace}/new_function'}
+          },
+            
           }
         }
+
     },
-    variables: { api_url:'https://5000-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/'},
+    variables: { api_url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/api'},
 
     // data model
     models: {}

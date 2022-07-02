@@ -22,13 +22,19 @@ def hello_world():
 
 @app.route('/api/create_workspace',  methods = ['GET', 'POST', 'DELETE'])
 def create_workspace():
-    print('creating workspace', request.json)
-    datastack.workplaces.create_workspace(request.json['name'])
-    return jsonify({'some': 'data'})
+    worskspace_name = request.json['name']
+    try:
+        datastack.workplaces.create_workspace(worskspace_name)
+        return jsonify({'name':worskspace_name})
+    except Exception as e:
+        print('error',e)
+        return 'error', 400
 
-@app.route('/api/workspaces')
-def get_workspace():
-    return datastack.workplaces.get_workspaces()
+@app.route('/api/workspace/<workspace>/new_function')
+def get_workspace1(workspace):
+    print(workspace)
+    return jsonify({'new_function':'test_function'})
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
