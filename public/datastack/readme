@@ -11,4 +11,6 @@ ng g c components/navigation
 ng g c components/navbar
 ng g c components/component_loader
 ng g c components/table
+ng g c components/text
+ng g c components/code_editor
  

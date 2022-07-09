@@ -25,6 +25,8 @@ import { TableComponent } from './components/table/table.component';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsComponent } from './components/forms/forms.component';
+import { TextComponent } from './components/text/text.component';
+import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { FormsComponent } from './components/forms/forms.component';
     ComponentDirective,
     ComponentLoaderComponent,
     TableComponent,
-    FormsComponent
+    FormsComponent,
+    TextComponent,
+    CodeEditorComponent
   ],
   imports: [
     BrowserModule,

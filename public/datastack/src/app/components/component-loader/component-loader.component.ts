@@ -36,18 +36,15 @@ export class ComponentLoaderComponent implements OnInit {
       console.log(_component)
       const componentRef:any = viewContainerRef.createComponent(_component.type);
       componentRef.instance.events = _component.events
-      Object.keys(_component.parameters || {}).forEach((key:any)=>{
-        componentRef.instance[key] = _component.parameters[key]
+      Object.keys(_component.params || {}).forEach((key:any)=>{
+        componentRef.instance[key] = _component.params[key]
       })
       Object.keys(_component.events || {}).forEach((key:any)=>{
         console.log(key)
         componentRef.instance[key].subscribe((a)=>{
           console.log('event clicked',a)
           _component.events[key].params.payload = a
-          this.appinit.dispatch_event(_component.events[key]).subscribe(res=>{
-            console.log(res)
-            componentRef.instance.state = 'success'
-          })
+          this.appinit.dispatch_event(_component.events[key])
         })
         
       })  

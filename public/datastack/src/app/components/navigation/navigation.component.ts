@@ -13,7 +13,7 @@ import { ComponentsService } from 'src/app/services/components.service';
 export class NavigationComponent implements OnInit {
   current_route = ''
   component: any;
-  
+  page:any
   constructor(private router : Router, 
     private route: ActivatedRoute,
     private cf : ComponentsService,
@@ -25,9 +25,16 @@ export class NavigationComponent implements OnInit {
       .subscribe((event:any) => {
           console.log(event.urlAfterRedirects);
         this.current_route = event.urlAfterRedirects
-        console.log(this.cf.get_component(this.appinit.route_to_component(this.current_route)))
-        this.component = this.cf.get_component(this.appinit.route_to_component(this.current_route))
-        console.log(this.component)
+        let _page = this.appinit.route_to_component(this.current_route)
+        // console.log('page_name',page_name)
+        this.page = this.cf.get_page(_page.page_name)
+        console.log('page', this.page)
+        // console.log(this.appinit.route_to_component(this.current_route))
+
+        // console.log(this.cf.get_component(this.appinit.route_to_component(this.current_route)))
+        // console.log('loading component')
+        // this.component = this.cf.get_component(this.appinit.route_to_component(this.current_route))
+        // console.log(this.component)
       });
 
     

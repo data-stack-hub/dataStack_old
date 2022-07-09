@@ -30,11 +30,27 @@ def create_workspace():
         print('error',e)
         return 'error', 400
 
-@app.route('/api/workspace/<workspace>/new_function')
-def get_workspace1(workspace):
-    print(workspace)
-    return jsonify({'new_function':'test_function'})
+@app.route('/api/workspace/<workspace>/new_function', methods = ['GET', 'POST', 'DELETE'])
+def create_function(workspace):
+    function_name = request.json['function_name']
+    code = request.json['code']
+    print(workspace,function_name, code)
+    datastack.functions.update_create_new_function(function_name, code, workspace)
+    return jsonify({'function_name':function_name})
 
+@app.route('/api/workspace/<workspace>/function/<function_name>', methods=['GET', 'POST'])
+def _function(workspace, function_name):
+    print(workspace, function_name)
+    if request.method == 'GET':
+        return jsonify(datastack.functions.get_function(workspace, function_name))
+    elif request.method == 'POST':
+        code = request.json['code']
+        datastack.functions.update_create_new_function(function_name, code, workspace)
+        return jsonify({'function_name':function_name})
+
+@app.route('/api/workspace/<workspace>/functions')
+def get_all_functions(workspace):
+    return datastack.functions.get_all_functions()
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)

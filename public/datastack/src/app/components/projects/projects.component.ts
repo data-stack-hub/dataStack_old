@@ -25,8 +25,8 @@ workspace
 
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.url[1].path)
-    this.workspace = this.route.snapshot.url[1].path
+    // console.log(this.route.snapshot.url[1].path)
+    this.workspace = 'this.route.snapshot.url[1].path'
     this.component = this.cf.get_component('form')
   }
 

@@ -1,5 +1,5 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { ApiService } from './api.service';
 import { app } from './app'
@@ -13,10 +13,11 @@ export class AppinitService {
   _app:any = app
   constructor(private router: Router,
     private api: ApiService,
-    private variables:VariablesService
+    private variables:VariablesService,
+    private route: ActivatedRoute
     ) {
     console.log(app)
-      this.variables.set_app_variables(this._app.variables)
+      this.variables.init_app_variables(this._app.variables)
    }
 
    navigate_to(params:any){
@@ -33,7 +34,7 @@ export class AppinitService {
     let filtered_route:any = ''
     try {
       if (route_array.length == 1){
-        filtered_route =  this._app.routes.filter((it:any)=>it.path == route)
+        filtered_route =  this._app.routes.filter((it:any)=>it.path == route)[0]
       }else{
         let route = this._app.routes.filter((it:any)=>it.path.includes(route_array[0]) && it.path.split('/').filter(e=>e).length == route_array.length)
         console.log(route)
@@ -45,22 +46,34 @@ export class AppinitService {
               path_array[i] = route_array[i]
             }
           });
-          console.log(path_array)
-          if(path_array == route_array ){
+          console.log(path_array, route_array)
+          let match_path =  (path_array.length == route_array.length) && path_array.every(function(element, index) {
+            return element === route_array[index]; 
+        });
+        console.log(match_path)
+          if(match_path ){
+            console.log(element)
             filtered_route =  element
           }
         });
-        filtered_route =  route
+        // filtered_route =  route
       }
+      console.log(filtered_route,route)
+      filtered_route.path.split(/[?#]/)[0].split('/').filter(e=>e).forEach((element, i) => {
+        if(element.includes('${')){
+          this.variables.set_app_variables(element.replace('${','').replace('}',''), route.split(/[?#]/)[0].split('/').filter(e=>e)[i])
+        }
+      });
+      if( filtered_route.hasOwnProperty('page')){
+        console.log(filtered_route)
 
-      if( filtered_route[0].hasOwnProperty('page')){
-        return filtered_route[0].page
+        return {page_name:filtered_route.page}
       }else{
-        return filtered_route[0].component
+        return filtered_route.component
       }
   
     } catch (error) {
-      return route_array[0]
+      return route_array
     }
     
    }
@@ -73,7 +86,9 @@ export class AppinitService {
     console.log('event:', _event)
     if(_event.type == 'http'){
       let url = this.variables.replace_variable(_event.params.url)
+      console.log('url',url)
       if (_event.request == 'post'){
+        console.log(_event)
         return this.api.post(url, _event.params.payload)
       }else{
         return this.api.get(url)
@@ -84,5 +99,7 @@ export class AppinitService {
     }
    }
 
-  
+  get_query_params(){
+    return this.route.queryParams
+  }
 }

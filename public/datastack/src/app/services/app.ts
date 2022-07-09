@@ -1,13 +1,17 @@
 export const app = {
     app_id: 'data_stack',
     routes: [
-        {path:'/projects', component:'projects', page:'test'},
+        {path:'/workspace/${workspace}', page:'workspace_home'},
+        {path:'/workspace/${workspace}/function/${function}', page:'function_home'},
+        {path:'/workspace/${workspace}/new_function', page:'new_function'},
+        {path:'/workspace/${workspace}/functions', page:'function_list'},
+        {path:'/workspace/${workspace}/edit_function/${function}', page:'new_function'},
+
+        {path:'/projects', component:'projects', page:'test_page'},
         {path:'/test', component:'test'},
         {path:'/todo', component:'todo'},
         {path:'/form', component:'form'},
         {path:'/new_workspace', component:'new_workspace'},
-        {path:'/workspace/${workspace}/function/${function}', component:'test'},
-        {path:'/new_workspace/${workspace}', component:'test'}
     ],
 
     menu :[
@@ -16,6 +20,10 @@ export const app = {
             name:'workspace',
             link:'projects',
             icon:'bookmark-outline'
+          },
+          {
+            name:'functions',
+            link:'workspace/${workspace}/functions'
           },
           {
             name:'form',
@@ -40,12 +48,12 @@ export const app = {
             children:[
               {
                 name:'workspace',
-                link:'new_workspace',
+                link:'workspace/${workspace}/new_workspace',
                 events:{'click':{type:'http', params:{url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/api/create_workspace'}}}
               },
               {
                 name:'function',
-                link:'new_function'
+                link:'workspace/${workspace}/new_function'
               },
               {
                 name:'notebook',
@@ -58,10 +66,64 @@ export const app = {
     //  view for UI
 
     pages:{
-      test:{
-        id: 'project_component',
-        type:'project_component'
-    }
+      workspace_home:[
+        {id:'workplace_header', type:'text', params:{data:'this is workplace home - ${workspace}'}}
+      ],
+      function_home:[
+        {id:'function_home', type:'text', params:{data:'this is function ghome - ${function}'}}
+      ],
+      new_function:[
+        // {id:'code_editor', type:'code_editor'},
+        {id:'new_function', type:'text', params:{data:'create new function'}},
+        {id:'new_function_form', type:'form', 
+          params:{
+            data_load_url:'${api_url}/workspace/${workspace}/function/${function}',
+            controls : [
+            {
+              "name": "function_name",
+              "label": "Function Name",
+              "value": "",
+              "type": "text",
+              "validators": {
+                "required": true,
+              }
+            },
+            {
+              "name":'code',
+              "lable":'code',
+              "type":'code',
+              "validators":{
+                "required":false
+              }
+            }
+          ]
+        },
+        events:{
+          'submit':{
+            type:'http',request:'post', 
+            success:{type:'navigation',params:{ path:'/workspace/${workspace}/functions'}, fn:'navigate_to'},
+            error:{},
+            params:{url:'${api_url}/workspace/${workspace}/function/${function}',
+            create_url:'${api_url}/workspace/${workspace}/new_function',
+            update_url:'${api_url}/workspace/${workspace}/function/${function}',
+            create_request_type : 'PUT',
+            update_request_type:'POST',
+      
+
+          }
+        },
+          
+        }
+
+      }
+      ],
+      function_list:[
+        {id:'function_list', type:'table_component',
+          params:{url:'${api_url}/workspace/${workspace}/functions'},
+          events:{'row_click_event':{type:'navigation', params:{path:'/workspace/${worspace}/edit_function/${name}?edit=true'}, fn:'navigate_to'}}
+        }
+      ]
+      
     },
     components: {
         projects:{
@@ -148,14 +210,18 @@ export const app = {
               type:'http',request:'get', 
               success:{type:'navigation',params:{ path:'/workspace/${workspace}/function/${new_function}'}, fn:'navigate_to'},
               error:{},
-              params:{url:'${api_url}/workspace/${workspace}/new_function'}
+              params:{
+                create_url:'${api_url}/workspace/${workspace}/new_function',
+                update_url:'${api_url}/workspace/${workspace}/functions/${function_name}'},
+                create_request_type : 'PUT',
+                update_request_type:'POST',
           },
             
           }
         }
 
     },
-    variables: { api_url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us47.gitpod.io/api'},
+    variables: { api_url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us53.gitpod.io/api'},
 
     // data model
     models: {}

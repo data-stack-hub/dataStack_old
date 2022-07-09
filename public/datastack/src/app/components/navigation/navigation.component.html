@@ -1,3 +1,3 @@
 <app-navbar>
-   <app-component-loader [component]="component"></app-component-loader>
+   <app-component-loader [component]="component" *ngFor="let component of page"></app-component-loader>
 </app-navbar>

@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody> 
-      <tr *ngFor="let data of basicTable.data" (click)="row_click()">
+      <tr *ngFor="let data of basicTable.data" (click)="row_click(data)">
         <td *ngFor ="let column of columns">{{data[column.column_name] }}</td>
       </tr>
     </tbody>
