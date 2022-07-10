@@ -16,6 +16,8 @@ export class FormsComponent implements OnInit {
   @Input() events:any
   @Input() edit:any = false
   @Input() data_load_url:any
+  @Input() submit_button_name:any = 'submit'
+
   @Output() form_data: EventEmitter<any> = new EventEmitter()
   @Output() submit: EventEmitter<any> = new EventEmitter()
 

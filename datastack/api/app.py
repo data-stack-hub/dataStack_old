@@ -52,5 +52,18 @@ def _function(workspace, function_name):
 def get_all_functions(workspace):
     return datastack.functions.get_all_functions()
 
+#-------------------------- notebooks ---------------------------------------
+@app.route('/api/workspace/<workspace>/new_notebook', methods=['GET', 'POST'])
+def new_notebook(workspace):
+    notebook_name = request.json['notebook_name']
+    print(notebook_name)
+    datastack.notebooks.create_notebook(workspace, notebook_name)
+    return jsonify({'some':'value'})
+
+@app.route('/api/workspace/<workspace>/notebooks')
+def notebooks(workspace):
+    return datastack.notebooks.get_all_notebooks(workspace)
+
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)

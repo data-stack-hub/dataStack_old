@@ -7,6 +7,10 @@ export const app = {
         {path:'/workspace/${workspace}/functions', page:'function_list'},
         {path:'/workspace/${workspace}/edit_function/${function}', page:'new_function'},
 
+        {path:'workspace/${workspace}/notebooks', page:'notebooks'},
+        {path:'workspace/${workspace}/notebooks/notebook/new', page:'edit_notebook'},
+        {path:'workspace/${workspace}/notebooks/${notebook_name}', page:'open_notebook'},
+
         {path:'/projects', component:'projects', page:'test_page'},
         {path:'/test', component:'test'},
         {path:'/todo', component:'todo'},
@@ -24,6 +28,10 @@ export const app = {
           {
             name:'functions',
             link:'workspace/${workspace}/functions'
+          },
+          {
+            name:'Notebook',
+            link:'workspace/${workspace}/notebooks'
           },
           {
             name:'form',
@@ -57,7 +65,7 @@ export const app = {
               },
               {
                 name:'notebook',
-                
+                link:'workspace/${workspace}/notebooks/notebook/new'
               }
             ]
           }
@@ -108,13 +116,9 @@ export const app = {
             update_url:'${api_url}/workspace/${workspace}/function/${function}',
             create_request_type : 'PUT',
             update_request_type:'POST',
-      
-
           }
         },
-          
         }
-
       }
       ],
       function_list:[
@@ -122,6 +126,35 @@ export const app = {
           params:{url:'${api_url}/workspace/${workspace}/functions'},
           events:{'row_click_event':{type:'navigation', params:{path:'/workspace/${worspace}/edit_function/${name}?edit=true'}, fn:'navigate_to'}}
         }
+      ],
+      notebooks:[
+        {id:'notbook', type:'text', params:{data:'notebook works!'}},
+        {id:'notebook_list', type:'table_component',
+          params:{url:'${api_url}/workspace/${workspace}/notebooks'},
+          events:{row_click_event:{type:'navigation', params:{path:'/workspace/${worspace}/notebooks/${name}'}, fn:'navigate_to'}}  
+      }
+      ],
+      edit_notebook:[
+        {id:'edit_notebook', type:'form',
+          params:{
+            controls:[{name:'notebook_name', label:'Notebook Name', type:'text', validators:{}}],
+            submit_button_name:'create_notebook'
+          },
+          events:{
+            submit:{
+              type:'http', request:'post',
+              params:{
+                create_url:'${api_url}/workspace/${workspace}/new_notebook'
+              },
+              success:{type:'navigation',params:{ path:'/workspace/${workspace}/notebooks'}, fn:'navigate_to'},
+
+              
+            }
+          }
+      }
+      ],
+      open_notebook:[
+        {id:'notebook_iframe', type:'iframe', params:{url:'${jupyter_url}/${notebook_name}'}}
       ]
       
     },
@@ -221,7 +254,10 @@ export const app = {
         }
 
     },
-    variables: { api_url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us53.gitpod.io/api'},
+    variables: { 
+      api_url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us53.gitpod.io/api',
+      jupyter_url:'https://8888-datastackhub-datastack-6rhr2oo42fe.ws-us53.gitpod.io/notebooks/data'
+    },
 
     // data model
     models: {}

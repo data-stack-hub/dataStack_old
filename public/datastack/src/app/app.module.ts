@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsComponent } from './components/forms/forms.component';
 import { TextComponent } from './components/text/text.component';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
+import { IframeComponent } from './components/iframe/iframe.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { CodeEditorComponent } from './components/code-editor/code-editor.compon
     TableComponent,
     FormsComponent,
     TextComponent,
-    CodeEditorComponent
+    CodeEditorComponent,
+    IframeComponent
   ],
   imports: [
     BrowserModule,

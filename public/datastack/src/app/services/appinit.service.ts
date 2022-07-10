@@ -82,6 +82,10 @@ export class AppinitService {
     return this._app
    }
 
+   replace_variable(target, scope?){
+    return this.variables.replace_variable(target, scope)
+   }
+
    dispatch_event(_event:any){
     console.log('event:', _event)
     if(_event.type == 'http'){

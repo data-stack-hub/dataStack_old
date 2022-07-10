@@ -1,0 +1,7 @@
+
+
+set environment path
+
+export JUPYTER_CONFIG_DIR=./datastack/dependency/jupyter
+export JUPYTER_DATA_DIR=./datastack/dependency/jupyter
+export JUPYTER_RUNTIME_DIR=./datastack/dependency/jupyter

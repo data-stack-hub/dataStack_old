@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CodeEditorComponent } from '../components/code-editor/code-editor.component';
 import { FormsComponent } from '../components/forms/forms.component';
+import { IframeComponent } from '../components/iframe/iframe.component';
 import { ProjectsComponent } from '../components/projects/projects.component';
 import { TableComponent } from '../components/table/table.component';
 import { TextComponent } from '../components/text/text.component';
@@ -16,7 +17,8 @@ export class ComponentsService {
     'project_component':ProjectsComponent,
     'form': FormsComponent,
     'text':TextComponent,
-    'code_editor':CodeEditorComponent
+    'code_editor':CodeEditorComponent,
+    'iframe':IframeComponent
   }
   constructor(private utils:UtilsService) { }
 
