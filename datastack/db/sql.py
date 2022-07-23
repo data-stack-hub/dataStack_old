@@ -5,10 +5,14 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 parent = os.path.dirname(SCRIPT_DIR)
 data_directory = os.path.join(parent, 'data')
 
+path = os.path.relpath(data_directory , os.getcwd())
+local_db = 'sqlite:///'+path+'/data_stack.db'
+
+postgres = 'postgresql://eaepxfmiotjjvq:b4deb8f830ec5d15df319e69701a25716a0972b1178276654a4b898d6dbd82e1@ec2-54-87-179-4.compute-1.amazonaws.com:5432/d7jj3fcspm1kp'
 class sql():
     def __init__(self, connection, table):
-        path = os.path.relpath(data_directory , os.getcwd())
-        self.engine = create_engine('sqlite:///'+path+'/data_stack.db')
+        
+        self.engine = create_engine(postgres)
         self.table = table
 
     def add_document(self, data):

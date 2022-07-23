@@ -11,6 +11,9 @@ export const app = {
         {path:'workspace/${workspace}/notebooks/notebook/new', page:'edit_notebook'},
         {path:'workspace/${workspace}/notebooks/${notebook_name}', page:'open_notebook'},
 
+        {path:'workspace/${workspace}/etl', page:'etl'},
+        {path:'workspace/${workspace}/airflow', page:'airflow'},
+
         {path:'/projects', component:'projects', page:'test_page'},
         {path:'/test', component:'test'},
         {path:'/todo', component:'todo'},
@@ -21,12 +24,12 @@ export const app = {
     menu :[
         {
             rank:1,
-            name:'workspace',
+            name:'Workspace',
             link:'projects',
             icon:'bookmark-outline'
           },
           {
-            name:'functions',
+            name:'Functions',
             link:'workspace/${workspace}/functions'
           },
           {
@@ -34,21 +37,12 @@ export const app = {
             link:'workspace/${workspace}/notebooks'
           },
           {
-            name:'form',
-            link:'form'
-          },
-          
-          {
-            rank:1,
-            name:'test',
-            link:'test',
-            icon:'bookmark-outline'
+            name:'ETL',
+            link:'workspace/${workspace}/etl'
           },
           {
-            rank:1,
-            name:'todo',
-            link:'todo',
-            icon:'bookmark-outline'
+            name:'AirFlow',
+            link:'workspace/${workspace}/airflow'
           },
           {
             name:'create',
@@ -155,6 +149,12 @@ export const app = {
       ],
       open_notebook:[
         {id:'notebook_iframe', type:'iframe', params:{url:'${jupyter_url}/${notebook_name}'}}
+      ],
+      etl:[
+        {id:'etl', type:'iframe', params:{url:'${airbyte_url}'}}
+      ],
+      airflow:[
+        {id:'airflow', type:'iframe', params:{url:'${airflow_url}'}}
       ]
       
     },
@@ -255,8 +255,11 @@ export const app = {
 
     },
     variables: { 
-      api_url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us53.gitpod.io/api',
-      jupyter_url:'https://8888-datastackhub-datastack-6rhr2oo42fe.ws-us53.gitpod.io/notebooks/data'
+      api_url:'https://3245-datastackhub-datastack-6rhr2oo42fe.ws-us54.gitpod.io/api',
+      jupyter_url:'https://8888-datastackhub-datastack-6rhr2oo42fe.ws-us54.gitpod.io/notebooks/data',
+      airbyte_url:'https://8000-datastackhub-datastack-6rhr2oo42fe.ws-us54.gitpod.io/',
+      airflow_url:'https://8080-datastackhub-datastack-6rhr2oo42fe.ws-us54.gitpod.io/'
+
     },
 
     // data model

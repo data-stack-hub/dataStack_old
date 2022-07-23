@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from flask import request
+from flask import request, send_from_directory, render_template
 from flask_cors import CORS
 from pathlib import Path
 import os, sys, json
@@ -10,8 +10,12 @@ sys.path.append(os.path.dirname(parent))
 
 print(sys.path)
 import datastack
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+parent = os.path.dirname(SCRIPT_DIR)
+root_dir = os.path.dirname(parent)
+file_path = os.path.join(root_dir,'public/datastack/dist/datastack')
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=file_path, template_folder=file_path, static_url_path='/')
 cors = CORS(app)
 
 @app.route("/")
@@ -19,6 +23,11 @@ def hello_world():
     response = jsonify({'some': 'data'})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+@app.route("/app")
+def app_():
+    return send_from_directory(file_path, "index.html")
+    # return render_template( 'index.html')
 
 @app.route('/api/create_workspace',  methods = ['GET', 'POST', 'DELETE'])
 def create_workspace():

@@ -1,0 +1,12 @@
+{
+  "base_url": "/",
+  "hostname": "localhost",
+  "notebook_dir": "/workspace/dataStack/datastack",
+  "password": false,
+  "pid": 4309,
+  "port": 8891,
+  "secure": false,
+  "sock": "",
+  "token": "",
+  "url": "http://localhost:8891/"
+}

@@ -3,3 +3,5 @@ flask_cors==3.0.10
 pandas==1.4.3
 SQLAlchemy==1.4.39
 jupyter
+psycopg2==2.9.3
+gunicorn 
