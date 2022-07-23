@@ -8,7 +8,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 parent = os.path.dirname(SCRIPT_DIR)
 root_dir = os.path.dirname(parent)
 file_path = os.path.join(root_dir,'public/datastack/dist/datastack')
-
+print('file path', file_path)
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 print('script dir', SCRIPT_DIR)
 
