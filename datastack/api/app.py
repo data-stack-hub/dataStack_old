@@ -19,7 +19,7 @@ print('current working directory', os.getcwd())
 print(sys.path)
 dir_list = os.listdir(os.getcwd())
 print('all files', dir_list)
-import datastack
+import app as datastack
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 parent = os.path.dirname(SCRIPT_DIR)
 root_dir = os.path.dirname(parent)
