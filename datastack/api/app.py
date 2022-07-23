@@ -5,6 +5,7 @@ from pathlib import Path
 import os, sys, json
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+print('script dir', SCRIPT_DIR)
 parent = os.path.dirname(SCRIPT_DIR)
 sys.path.append(os.path.dirname(parent))
 sys.path.append(os.path.dirname(os.path.dirname(parent)))
