@@ -6,7 +6,7 @@ import os, sys, json
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 print('script dir', SCRIPT_DIR)
-print('current working directory', os.getcwd())
+
 parent = os.path.dirname(SCRIPT_DIR)
 sys.path.append(os.path.dirname(parent))
 sys.path.append(os.path.dirname(os.path.dirname(parent)))
@@ -15,7 +15,10 @@ sys.path.append('../..')
 ROOT_DIR = os.path.abspath(os.curdir)
 print('Root dir', ROOT_DIR)
 os.chdir('../..')
+print('current working directory', os.getcwd())
 print(sys.path)
+dir_list = os.listdir(os.getcwd())
+print('all files', dir_list)
 import datastack
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 parent = os.path.dirname(SCRIPT_DIR)
