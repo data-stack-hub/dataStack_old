@@ -1,2 +1,2 @@
 ./dependency/airbyte
-./airflow
+./dependency/airflow
