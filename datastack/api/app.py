@@ -5,6 +5,11 @@ from pathlib import Path
 import os, sys, json
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+parent = os.path.dirname(SCRIPT_DIR)
+root_dir = os.path.dirname(parent)
+file_path = os.path.join(root_dir,'public/datastack/dist/datastack')
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 print('script dir', SCRIPT_DIR)
 
 parent = os.path.dirname(SCRIPT_DIR)
@@ -20,10 +25,7 @@ print(sys.path)
 dir_list = os.listdir(os.getcwd())
 print('all files', dir_list)
 import app as datastack
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-parent = os.path.dirname(SCRIPT_DIR)
-root_dir = os.path.dirname(parent)
-file_path = os.path.join(root_dir,'public/datastack/dist/datastack')
+
 
 app = Flask(__name__, static_folder=file_path, template_folder=file_path, static_url_path='/')
 cors = CORS(app)
