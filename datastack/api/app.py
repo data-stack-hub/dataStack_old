@@ -14,7 +14,7 @@ sys.path.append('.')
 sys.path.append('../..')
 ROOT_DIR = os.path.abspath(os.curdir)
 print('Root dir', ROOT_DIR)
-
+os.chdir('../..')
 print(sys.path)
 import datastack
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
