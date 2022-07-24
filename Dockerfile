@@ -12,6 +12,7 @@ FROM python:3.8
 
 RUN ls
 COPY . .
+COPY --from=0 /public/datastack /public/datastack
 WORKDIR /datastack
 RUN pip3 install -r requirements.txt
 RUN ls
