@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: python datastack/api/app.py
+  web: gunicorn datastack/api/app:app 
