@@ -9,8 +9,9 @@ RUN npm run build --prod
 
 FROM python:3.8
 
-WORKDIR /
+
 RUN ls
+WORKDIR /datastack
 RUN pip3 install -r datastack/requirements.txt
 RUN ls
 
