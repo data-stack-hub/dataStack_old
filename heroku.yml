@@ -1,5 +1,10 @@
 build:
   docker:
     web: Dockerfile
+    
+release:
+  command:
+    - ls
+  
 run:
   web: gunicorn --chdir datastack/api app:app 
