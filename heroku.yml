@@ -3,4 +3,4 @@ build:
     web: Dockerfile
     
 run:
-  web: gunicorn --chdir datastack/api app:app 
+  web: gunicorn --chdir api app:app 
