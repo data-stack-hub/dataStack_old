@@ -1,0 +1,17 @@
+------------------------------services-----------------------------
+ng g service services/appinit
+ng g service services/api
+ng g service services/components
+ng g service services/utils
+ng g service services/variables
+
+------------------------------components---------------------------
+
+ng g c components/navigation
+ng g c components/navbar
+ng g c components/component_loader
+ng g c components/table
+ng g c components/text
+ng g c components/code_editor
+ng g c components/iframe
+ 

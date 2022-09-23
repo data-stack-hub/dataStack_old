@@ -1,0 +1,25 @@
+
+<nz-layout style="height: 100vh;">
+  <nz-sider nzCollapsible nzWidth="200px">
+    <div class="logo" style="color: white;
+    line-height: 32px;
+    text-align: center;">Data Stack</div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      
+      <ng-container *ngFor="let item of menu">
+        <li nz-menu-item (click)="nav_to(item)" *ngIf="!item.children">
+          <i nz-icon nzType="pie-chart"></i>
+          <span>{{item.name}}</span>
+        </li>
+       
+        <li nz-submenu [nzTitle]="item.name" [nzIcon]="item.icon" *ngIf="item.children">
+          <ul>
+            <li nz-menu-item (click)="nav_to(child_item)" *ngFor="let child_item of item.children">{{child_item.name}}</li>
+          </ul>
+        </li>
+      </ng-container>
+
+    </ul>
+  </nz-sider>
+  <nz-content><ng-content></ng-content></nz-content>
+</nz-layout>

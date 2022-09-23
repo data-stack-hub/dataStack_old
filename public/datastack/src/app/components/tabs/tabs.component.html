@@ -1,0 +1,5 @@
+<nz-tabset>
+    <nz-tab  *ngFor="let tab of props.tabs;" [nzTitle]="tab.title">
+        <app-component-loader [component]="c" *ngFor="let c of tab.component"></app-component-loader>
+    </nz-tab>
+  </nz-tabset>

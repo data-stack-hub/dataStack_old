@@ -1,0 +1,18 @@
+<!-- <button nz-button nzType="primary" (click)="openComponent()">Use Component</button> -->
+<button nz-button nzType="primary" (click)="open()" *ngIf="hide_button">Open</button>
+<nz-drawer
+[nzClosable]="false"
+nzSize="large"
+[nzVisible]="visible"
+nzPlacement="right"
+nzTitle="Basic Drawer"
+(nzOnClose)="close()"
+>
+<ng-container *nzDrawerContent>
+  <ng-container *ngFor="let c of components">
+    <div>
+        <app-component-loader [component]="c"></app-component-loader>
+    </div>
+</ng-container>
+</ng-container>
+</nz-drawer>

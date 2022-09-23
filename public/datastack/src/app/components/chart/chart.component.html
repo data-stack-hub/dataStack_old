@@ -1,0 +1,16 @@
+
+<div style="border: 1px solid #24292e1f;margin-top: 10px; position: relative; " [ngStyle]="{'width': props.width+ '%'}" (mouseenter)="mouseEnter('true')" (mouseleave)="mouseLeave('false')" >
+    <div style="text-align: center; padding:5px 0px">{{props.title}} </div>
+    
+    <ng-container style="width:100%;">
+        <plotly-plot [data]="graph.data" [layout]="graph.layout" *ngIf="show_chart"></plotly-plot>
+        <!-- <nz-empty *ngIf="!show_chart && !loading"></nz-empty> -->
+        <!-- <nz-spin nzSimple *ngIf ="loading"></nz-spin> -->
+    </ng-container>
+    
+   
+    <div style="position: absolute; top:4px; cursor: pointer; right:4px; background: rgba(0, 0, 0, 0.6); border-radius: 3px;" *ngIf="show_detai_icon">
+        <div style="border:none; padding: 0px 6px; color: white;transform: rotateZ(90deg);"  (click)="open_detail()" ><span nz-icon nzType="more"></span></div>
+    </div>
+</div>
+<app-drawer  [hide_button]="false" [visible]="details_visiblity" [components]="components" (on_close)="on_details_close()"></app-drawer>
