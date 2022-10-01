@@ -1,4 +1,4 @@
-Medium artical about [# dataStack
+Medium article about [# dataStack
 ](https://medium.com/@vishalvora_53246/no-code-app-development-with-python-sql-and-angular-dea8e9aad7a3)
 
 ## run front end:
