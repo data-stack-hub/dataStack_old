@@ -61,3 +61,11 @@ python api.py
         },
 
 ```
+
+### TODO
+
+- [x] Create dynamic ui from json description file
+- [x] add actions and events from UI
+- [ ] python custom functions
+- [ ] modify json description form browser
+
